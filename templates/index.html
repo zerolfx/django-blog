@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for article in article_list %}
+        <div class="post-preview">
+            <a href="post.html">
+                <h2 class="post-title">
+                    {{ article.title }}
+                </h2>
+                <h3 class="post-subtitle">
+                    {{ article.abstract }}
+                </h3>
+            </a>
+            <p class="post-meta">分类:<a href="#">{{ article.category.name }}</a></p>
+        </div>
+        <hr>
+    {% endfor %}
+{% endblock %}
