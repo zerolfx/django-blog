@@ -19,6 +19,7 @@ class Article(models.Model):
     views = models.PositiveIntegerField('浏览量', default=0)
     topped = models.BooleanField('置顶', default=False)
     category = models.ForeignKey('Category', verbose_name='分类', null=True, on_delete=models.SET_NULL)
+    tags = models.ManyToManyField('Tag', verbose_name='标签集合', blank=True)
 
     def __str__(self):
         return self.title
@@ -29,6 +30,15 @@ class Article(models.Model):
 
 class Category(models.Model):
     name = models.CharField('类名', max_length=20)
+    created_time = models.DateTimeField('创建时间', auto_now_add=True)
+    last_modified_time = models.DateTimeField('修改时间', auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Tag(models.Model):
+    name = models.CharField('标签名', max_length=20)
     created_time = models.DateTimeField('创建时间', auto_now_add=True)
     last_modified_time = models.DateTimeField('修改时间', auto_now=True)
 

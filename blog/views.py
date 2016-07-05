@@ -11,6 +11,7 @@ import markdown2
 class IndexView(ListView):
     template_name = "index.html"
     context_object_name = "article_list"
+    paginate_by = 7
 
     def get_queryset(self):
         article_list = Article.objects.filter(status='p')
