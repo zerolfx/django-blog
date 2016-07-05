@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block body %}
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('{% static 'img/home-bg.jpg' %}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Zerol's Blog</h1>
+                        <hr class="small">
+                        <span class="subheading">too difficult to create a blog</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+
+
+            <!--div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"-->
+
+                {% block content %}{% endblock %}
+
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="next">
+                        <a href="#">Older Posts &rarr;</a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                                <a href="/tags/#linux基础" title="linux基础" rel="9">
+                                    linux基础
+                                </a>
+                                <a href="/tags/#django" title="django" rel="3">
+                                    django
+                                </a>
+                                <a href="/tags/#git" title="git" rel="6">
+                                    git
+                                </a>
+                                <a href="/tags/#jQuery" title="jQuery" rel="4">
+                                    jQuery
+                                </a>
+
+                    </div>
+                </section>
+    		</div>
+
+
+
+
+        </div>
+    </div>
+
+    <hr>
+
+{% endblock %}
