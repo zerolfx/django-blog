@@ -1,5 +1,6 @@
 {% extends 'base-index.html' %}
 {% block content %}
+
     {% for article in article_list %}
         <div class="post-preview">
             <a href="{% url 'blog:detail' article.pk %}">
@@ -14,4 +15,17 @@
         </div>
         <hr>
     {% endfor %}
+    <!-- Pager -->
+    <ul class="pager">
+    {% if page_obj.has_next %}
+                    <li class="next">
+                        <a href="{% url 'blog:pages' page_obj.next_page_number %}">Older &rarr;</a>
+                    </li>
+    {% endif %}
+    {% if page_obj.has_previous %}
+                    <li class="previous">
+                        <a href="{% url 'blog:pages' page_obj.previous_page_number %}">&larr; Newer</a>
+                    </li>
+    {% endif %}
+    </ul>
 {% endblock %}
