@@ -11,8 +11,18 @@
                     {{ article.abstract }}
                 </h3>
             </a>
-            <p class="post-meta">分类:<a href="#">{{ article.category.name }}</a></p>
+            <div class="post-preview" style="float: left">
+                <p class="post-meta">分类:<a href="#">{{ article.category.name }}</a>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </div>
+            <div class="sidebar-container" style="float: right">
+                <div class="tags">
+                    <a href="/tags/#linux基础" title="linux基础" rel="9">linux基础</a>
+                    <a href="/tags/#linux基础" title="linux基础" rel="9">linux基础</a>
+                    <a href="/tags/#linux基础" title="linux基础" rel="9">linux基础</a>
+                </div>
+            </div>
         </div>
+        <br>
         <hr>
     {% endfor %}
     <!-- Pager -->
@@ -28,4 +38,20 @@
                     </li>
     {% endif %}
     </ul>
+{% endblock %}
+
+
+{% block tags %}
+                                <a href="/tags/#linux基础" title="linux基础" rel="9">
+                                    linux基础
+                                </a>
+                                <a href="/tags/#django" title="django" rel="3">
+                                    django
+                                </a>
+                                <a href="/tags/#git" title="git" rel="6">
+                                    git
+                                </a>
+                                <a href="/tags/#jQuery" title="jQuery" rel="4">
+                                    jQuery
+                                </a>
 {% endblock %}
