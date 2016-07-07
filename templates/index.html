@@ -50,3 +50,14 @@
         </a>
     {% endfor %}
 {% endblock %}
+{% block category %}
+    <ul>
+        {% for category in category_list %}
+            <li>
+                <a href="{% url 'blog:category' category.pk 1 %}" title="{{ category.name }}">
+                    {{ category.name }}({{ category.article_set.count }})
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
