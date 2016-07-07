@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from blog.models import Article, Category
+from blog.models import Article, Category, Tag
 import markdown2
 
 
@@ -21,6 +21,7 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         kwargs['category_list'] = Category.objects.all().order_by('name')
+        kwargs['tag_list'] = Tag.objects.all().order_by('name')
         return super(IndexView, self).get_context_data(**kwargs)
 
 
@@ -35,6 +36,39 @@ class ArticleDetailView(DetailView):
         obj.body = markdown2.markdown(obj.body, extras=['fenced-code-blocks'])
         return obj
 
+
+class CategoryView(ListView):
+    template_name = "index.html"
+    context_object_name = "article_list"
+    paginate_by = 7
+
+    def get_queryset(self):
+        article_list = Article.objects.filter(status='p', category=self.kwargs['category_id'])
+        for article in article_list:
+            article.body = markdown2.markdown(article.body, extras=['fenced-code-blocks'])
+        return article_list
+
+    def get_context_data(self, **kwargs):
+        kwargs['category_list'] = Category.objects.all().order_by('name')
+        kwargs['tag_list'] = Tag.objects.all().order_by('name')
+        return super(CategoryView, self).get_context_data(**kwargs)
+
+
+class TagView(ListView):
+    template_name = "index.html"
+    context_object_name = "article_list"
+    paginate_by = 7
+
+    def get_queryset(self):
+        article_list = Article.objects.filter(status='p', tags=self.kwargs['tag_id'])
+        for article in article_list:
+            article.body = markdown2.markdown(article.body, extras=['fenced-code-blocks'])
+        return article_list
+
+    def get_context_data(self, **kwargs):
+        kwargs['category_list'] = Category.objects.all().order_by('name')
+        kwargs['tag_list'] = Tag.objects.all().order_by('name')
+        return super(TagView, self).get_context_data(**kwargs)
 
 
 

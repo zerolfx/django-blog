@@ -12,13 +12,15 @@
                 </h3>
             </a>
             <div class="post-preview" style="float: left">
-                <p class="post-meta">分类:<a href="#">{{ article.category.name }}</a>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <p class="post-meta">分类:<a href="{% url 'blog:category' article.category.pk 1 %}">{{ article.category.name }}</a>&nbsp;&nbsp;&nbsp;&nbsp;</p>
             </div>
             <div class="sidebar-container" style="float: right">
                 <div class="tags">
-                    <a href="/tags/#linux基础" title="linux基础" rel="9">linux基础</a>
-                    <a href="/tags/#linux基础" title="linux基础" rel="9">linux基础</a>
-                    <a href="/tags/#linux基础" title="linux基础" rel="9">linux基础</a>
+                    {% for tag in article.tags.all %}
+                        <a href="{% url 'blog:tag' tag.pk 1 %}" title="{{ tag.name }}">
+                            {{ tag.name }}
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -29,12 +31,12 @@
     <ul class="pager">
     {% if page_obj.has_next %}
                     <li class="next">
-                        <a href="{% url 'blog:pages' page_obj.next_page_number %}">Older &rarr;</a>
+                        <a href="{{ page_obj.next_page_number }}">Older &rarr;</a>
                     </li>
     {% endif %}
     {% if page_obj.has_previous %}
                     <li class="previous">
-                        <a href="{% url 'blog:pages' page_obj.previous_page_number %}">&larr; Newer</a>
+                        <a href="{{ page_obj.previous_page_number }}">&larr; Newer</a>
                     </li>
     {% endif %}
     </ul>
@@ -42,16 +44,9 @@
 
 
 {% block tags %}
-                                <a href="/tags/#linux基础" title="linux基础" rel="9">
-                                    linux基础
-                                </a>
-                                <a href="/tags/#django" title="django" rel="3">
-                                    django
-                                </a>
-                                <a href="/tags/#git" title="git" rel="6">
-                                    git
-                                </a>
-                                <a href="/tags/#jQuery" title="jQuery" rel="4">
-                                    jQuery
-                                </a>
+    {% for tag in tag_list %}
+        <a href="{% url 'blog:tag' tag.pk 1 %}" title="{{ tag.name }}">
+            {{ tag.name }}
+        </a>
+    {% endfor %}
 {% endblock %}
