@@ -15,7 +15,7 @@ class Article(models.Model):
     created_time = models.DateTimeField('创建时间', auto_now_add=True)
     last_modified_time = models.DateTimeField('修改时间', auto_now=True)
     status = models.CharField('文章状态', max_length=1, choices=STATUS_CHOICES)
-    abstract = models.CharField('摘要', max_length=140, blank=True, null=True)
+    abstract = models.TextField('摘要', max_length=140, blank=True, null=True)
     views = models.PositiveIntegerField('浏览量', default=0)
     topped = models.BooleanField('置顶', default=False)
     category = models.ForeignKey('Category', verbose_name='分类', null=True, on_delete=models.SET_NULL)
