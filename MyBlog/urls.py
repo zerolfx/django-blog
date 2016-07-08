@@ -20,5 +20,6 @@ from blog.views import IndexView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^(?P<page>\d+)$', IndexView.as_view(), name='pages'),
     url(r'^blog/', include('blog.urls', namespace='blog', app_name='blog')),
 ]

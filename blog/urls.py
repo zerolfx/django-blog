@@ -3,7 +3,6 @@ from blog import views
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^(?P<page>\d+)$', views.IndexView.as_view(), name='pages'),
     url(r'^article/(?P<article_id>\d+)$', views.ArticleDetailView.as_view(), name='detail'),
     url(r'^tag/(?P<tag_id>\d+)/(?P<page>\d+)$', views.TagView.as_view(), name='tag'),
     url(r'^category/(?P<category_id>\d+)/(?P<page>\d+)$', views.CategoryView.as_view(), name='category'),
