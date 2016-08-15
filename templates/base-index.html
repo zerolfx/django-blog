@@ -59,6 +59,13 @@
                         {% block category %}{% endblock %}
 
                     </div>
+                {% for about in about_list %}
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>{{ about.name }}</h5>
+                    <div>
+                        {{ about.body }}
+                    </div>
+                {% endfor %}
                 </section>
     		</div>
 

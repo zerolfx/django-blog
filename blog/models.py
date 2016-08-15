@@ -4,6 +4,14 @@ from django.db import models
 # Create your models here.
 
 
+class About(models.Model):
+    body = models.TextField('内容')
+    name = models.CharField('标题', max_length=20)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Article(models.Model):
 
     STATUS_CHOICES = (

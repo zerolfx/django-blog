@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from blog.models import Article, Category, Tag
+from blog.models import Article, Category, Tag, About
 import markdown2
 
 
@@ -22,6 +22,7 @@ class IndexView(ListView):
     def get_context_data(self, **kwargs):
         kwargs['category_list'] = Category.objects.all().order_by('name')
         kwargs['tag_list'] = Tag.objects.all().order_by('name')
+        kwargs['about_list'] = About.objects.all()
         return super(IndexView, self).get_context_data(**kwargs)
 
 
@@ -51,6 +52,7 @@ class CategoryView(ListView):
     def get_context_data(self, **kwargs):
         kwargs['category_list'] = Category.objects.all().order_by('name')
         kwargs['tag_list'] = Tag.objects.all().order_by('name')
+        kwargs['about_list'] = About.objects.all()
         return super(CategoryView, self).get_context_data(**kwargs)
 
 
@@ -68,6 +70,7 @@ class TagView(ListView):
     def get_context_data(self, **kwargs):
         kwargs['category_list'] = Category.objects.all().order_by('name')
         kwargs['tag_list'] = Tag.objects.all().order_by('name')
+        kwargs['about_list'] = About.objects.all()
         return super(TagView, self).get_context_data(**kwargs)
 
 
