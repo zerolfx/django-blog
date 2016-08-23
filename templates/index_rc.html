@@ -6,9 +6,9 @@
                 <h2 class="post-title">
                     {{ article.title }}
                 </h2>
-                <h3 class="post-subtitle">
+
                     {{ article.abstract |safe }}
-                </h3>
+
             <div class="post-preview" style="float: left">
                 <p class="post-meta">分类:<a href="{% url 'blog:category_rc' article.category.pk 1 %}">{{ article.category.name }}</a>&nbsp;&nbsp;&nbsp;&nbsp;</p>
             </div>
