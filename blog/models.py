@@ -53,3 +53,27 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Recommend(models.Model):
+
+    title = models.CharField('标题', max_length=70)
+    abstract = models.TextField('内容')
+    created_time = models.DateTimeField('创建时间', auto_now_add=True)
+    last_modified_time = models.DateTimeField('修改时间', auto_now=True)
+    category = models.ForeignKey('Category_rc', verbose_name='分类', null=True, on_delete=models.SET_NULL)
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-last_modified_time']
+
+
+class Category_rc(models.Model):
+    name = models.CharField('类名', max_length=20)
+    created_time = models.DateTimeField('创建时间', auto_now_add=True)
+    last_modified_time = models.DateTimeField('修改时间', auto_now=True)
+
+    def __unicode__(self):
+        return self.name

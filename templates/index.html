@@ -42,13 +42,20 @@
     </ul>
 {% endblock %}
 
+<h5>FEATURED TAGS</h5>
+                    <div class="tags">
+
 
 {% block tags %}
+    <hr class="hidden-sm hidden-xs">
+    <h5>FEATURED TAGS</h5>
+        <div class="tags">
     {% for tag in tag_list %}
         <a href="{% url 'blog:tag' tag.pk 1 %}" title="{{ tag.name }}">
             {{ tag.name }}
         </a>
     {% endfor %}
+    </div>
 {% endblock %}
 {% block category %}
     <ul>

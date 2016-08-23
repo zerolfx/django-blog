@@ -1,0 +1,47 @@
+{% extends 'base-index.html' %}
+{% block content %}
+
+    {% for article in article_list %}
+        <div class="post-preview">
+                <h2 class="post-title">
+                    {{ article.title }}
+                </h2>
+                <h3 class="post-subtitle">
+                    {{ article.abstract |safe }}
+                </h3>
+            <div class="post-preview" style="float: left">
+                <p class="post-meta">分类:<a href="{% url 'blog:category_rc' article.category.pk 1 %}">{{ article.category.name }}</a>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </div>
+        </div>
+        <br>
+        <hr>
+    {% endfor %}
+    <!-- Pager -->
+    <ul class="pager">
+    {% if page_obj.has_next %}
+                    <li class="next">
+                        <a href="{{ page_obj.next_page_number }}">Older &rarr;</a>
+                    </li>
+    {% endif %}
+    {% if page_obj.has_previous %}
+                    <li class="previous">
+                        <a href="{{ page_obj.previous_page_number }}">&larr; Newer</a>
+                    </li>
+    {% endif %}
+    </ul>
+{% endblock %}
+
+
+{% block tags %}
+{% endblock %}
+{% block category %}
+    <ul>
+        {% for category in category_list %}
+            <li>
+                <a href="{% url 'blog:category_rc' category.pk 1 %}" title="{{ category.name }}">
+                    {{ category.name }}({{ category.recommend_set.count }})
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
